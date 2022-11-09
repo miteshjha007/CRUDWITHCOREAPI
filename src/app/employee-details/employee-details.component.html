@@ -1,0 +1,36 @@
+<div class="container">
+    <app-employeeform></app-employeeform>
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-dark" style="background-color: grey;">
+        <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Date of joining</th>
+            <th>Designation</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let obj of empService.listEmp">
+            <td>{{obj.name}}</td>
+            <td>{{obj.lastName}}</td>
+            <td>{{obj.email}}</td>
+            <td>{{obj.doj |date : 'yyyy-MM-dd'}}</td>
+            <td>{{obj.designation}}</td>
+            <td>{{obj.age}}</td>
+            <td>
+                <div ngbDropdown>
+                    <button class="btn btn-warning" id="gfg" ngbDropdownToggle>Actions</button>
+                    <div ngbDropdownMenu="gfg">
+                        <button ngbDropdownItem (click)="editEmp(obj)">Edit</button>
+                        <button ngbDropdownItem (click)="deleteEmp(obj.id)">Delete</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
